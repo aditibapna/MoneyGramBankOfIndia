@@ -7,16 +7,16 @@ const columnDefs = [
 
     // specify the data
     var rowData = [
-      { sNO: "1", Name: "Aditi", Email: "aditi@email.com", Balance: 45300 },
-      { sNO: "2", Name: "Aastha", Email: "aastha@email.com", Balance: 95400 },
-      { sNO: "3", Name: "Anisha", Email: "Anisha@email.com", Balance: 113900 },
-      { sNO: "4", Name: "akshita", Email: "akshita@email.com", Balance: 54000 },
-      { sNO: "5", Name: "Kartik", Email: "Kartik@email.com", Balance: 482000 },
-      { sNO: "6", Name: "Aditya", Email: "Aditya@email.com", Balance: 95400 },
-      { sNO: "7", Name: "Abhishek", Email: "abhishek@email.com", Balance: 78950 },
-      { sNO: "8", Name: "Rohit", Email: "Rohit@email.com", Balance: 37000 },
-      { sNO: "9", Name: "Abhinav", Email: "Abhinav@email.com", Balance: 224000 },
-      { sNO: "10", Name: "Vedant", Email: "Vedant@email.com", Balance: 160000 },
+      { sNO: "1", Name: "Monica", Email: "monica@email.com", Balance: 45300 },
+      { sNO: "2", Name: "Ross", Email: "ross@email.com", Balance: 95400 },
+      { sNO: "3", Name: "Rachel", Email: "rachel@email.com", Balance: 113900 },
+      { sNO: "4", Name: "Joey", Email: "joey@email.com", Balance: 54000 },
+      { sNO: "5", Name: "Janice", Email: "janice@email.com", Balance: 482000 },
+      { sNO: "6", Name: "Chandler", Email: "chandler@email.com", Balance: 95400 },
+      { sNO: "7", Name: "Emily", Email: "emily@email.com", Balance: 78950 },
+      { sNO: "8", Name: "Phoebe", Email: "phoebe@email.com", Balance: 37000 },
+      { sNO: "9", Name: "Ursula", Email: "ursula@email.com", Balance: 224000 },
+      { sNO: "10", Name: "Emma", Email: "emma@email.com", Balance: 160000 },
     ];
 
     // let the grid know which columns and what data to use
@@ -57,16 +57,22 @@ function modalDisplay(){
 function updateRecord(){
   let recieverName = $("#receiversName").val();
   let recieverAmount = $("#Amount").val();
+  let senderName = $("#sendersName").val();
   var re = new RegExp("^[0-9]+$");
   console.log("recieverName =  " + recieverName );
   console.log("recieverAmount = " + recieverAmount);
-  if(recieverName == '' && recieverAmount === ''){
+  if(senderName == '' && recieverName == '' && recieverAmount === ''){
     alert("Please Provide Name and Amount to proceed");
   }
   for(let i = 0; i < rowData.length; i++){
     if(rowData[i].Name == recieverName){
       let balance = parseInt(rowData[i].Balance, 10);
       rowData[i].Balance = parseInt(recieverAmount,10) + balance;
+      console.log(rowData[i].Balance);
+    }
+    if(rowData[i].Name == senderName){
+      let balance = parseInt(rowData[i].Balance, 10);
+      rowData[i].Balance = balance - parseInt(recieverAmount,10) ;
       console.log(rowData[i].Balance);
     }
   }
